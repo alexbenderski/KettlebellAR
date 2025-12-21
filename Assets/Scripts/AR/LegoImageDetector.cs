@@ -1,0 +1,202 @@
+using UnityEngine;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
+
+public class LegoImageDetector : MonoBehaviour
+{
+    public ARTrackedImageManager manager;
+    public GameObject modelSpawned;
+
+    public InstructionSwipe instructionStage0;
+    public InstructionSwipe instructionStage1;
+    public InstructionSwipe instructionStage2;
+
+    public PlaceBytouch placeByTouch;
+
+    private bool imageDetected = false;
+    private bool planePlaced = false;
+    private bool stage0Completed = false;  // Guard flag: block detection until stage 0 finishes
+
+    public AudioSource audioSource;
+    public AudioClip model_spawned_sound;
+    public AudioClip photo_scanned_sound;
+
+    void Awake()
+    {
+        // גיבוי אם שכחנו לשים ב-Inspector
+        if (manager == null)
+            manager = FindFirstObjectByType<ARTrackedImageManager>();
+
+        if (placeByTouch == null)
+            placeByTouch = FindFirstObjectByType<PlaceBytouch>();
+    }
+
+    void OnEnable()
+    {
+        if (manager != null)
+            manager.trackedImagesChanged += OnImageChanged;
+
+        if (placeByTouch != null)
+            placeByTouch.OnModelPlaced += HandleModelPlaced;
+    }
+
+    void OnDisable()
+    {
+        if (manager != null)
+            manager.trackedImagesChanged -= OnImageChanged;
+
+        if (placeByTouch != null)
+            placeByTouch.OnModelPlaced -= HandleModelPlaced;
+    }
+
+    // נקרא מתוך MainMenuManager כשנכנסים ל-Explore
+    public void EnableTracking()
+    {
+        Debug.Log("[LegoImageDetector] EnableTracking");
+
+        imageDetected = false;
+        planePlaced = false;
+        stage0Completed = false;  // Reset flag when entering explore
+
+        if (manager != null)
+            manager.enabled = true;
+
+        if (placeByTouch != null)
+        { 
+            // תמיד מתחילים מצב נקי – בלי מודל ועם placed=false
+            placeByTouch.ResetPlacement();
+            placeByTouch.DisablePlaneDetection();  // Explicitly disable planes before stage 0
+            placeByTouch.enabled = false;   // נדליק אותו רק אחרי זיהוי תמונה
+        }
+
+        // Subscribe to stage 0 completion
+        if (instructionStage0 != null)
+            instructionStage0.OnInstructionsClosed += HandleStage0Completed;
+    }
+
+    // נקרא מתוך BackButtonExplore כשחוזרים לתפריט
+    public void ResetDetector()
+    {
+        Debug.Log("[LegoImageDetector] ResetDetector");
+
+        imageDetected = false;
+        planePlaced = false;
+        stage0Completed = false;  // Reset flag on return to menu
+
+        // Unsubscribe from stage 0
+        if (instructionStage0 != null)
+            instructionStage0.OnInstructionsClosed -= HandleStage0Completed;
+
+        // Unsubscribe from stage 1
+        if (instructionStage1 != null)
+            instructionStage1.OnInstructionsClosed -= HandleStage1Completed;
+
+        if (placeByTouch != null)
+        {
+            placeByTouch.ResetPlacement();
+            placeByTouch.DisablePlaneDetection();  // Explicitly disable planes on reset
+            placeByTouch.enabled = false;
+        }
+
+        if (modelSpawned != null)
+        {
+            modelSpawned.SetActive(false);
+            modelSpawned = null;
+        }
+
+        // "ריסט" עדין ל-ImageManager – בלי ARSession.Reset
+        if (manager != null)
+        {
+            manager.enabled = false;
+            manager.enabled = true;
+        }
+    }
+
+    // ----------------------------------------------------------
+    private void OnImageChanged(ARTrackedImagesChangedEventArgs args)
+    {
+        foreach (var img in args.added)
+            CheckImage(img);
+
+        foreach (var img in args.updated)
+            CheckImage(img);
+    }
+
+    private void CheckImage(ARTrackedImage img)
+    {
+        if (imageDetected || !stage0Completed)  // Block until stage 0 done
+            return;
+
+        // מוודאים שהתמונה באמת במעקב
+        if (img.referenceImage.name == "hub_for_detection" &&
+            img.trackingState == TrackingState.Tracking)
+        {
+            Debug.Log("[LegoImageDetector] IMAGE DETECTED: hub_for_detection");
+            imageDetected = true;
+
+            if (audioSource != null && photo_scanned_sound != null)
+                audioSource.PlayOneShot(photo_scanned_sound);
+
+            // שלב 0 → סגור, שלב 1 → נפתח
+            if (instructionStage0 != null)
+                instructionStage0.CloseInstructions();
+
+            if (instructionStage1 != null)
+            {
+                instructionStage1.OpenInstructions();
+                // Subscribe to stage 1 closing to enable planes
+                instructionStage1.OnInstructionsClosed += HandleStage1Completed;
+            }
+
+            // עכשיו מותר להניח מודל על משטח
+            if (placeByTouch != null)
+            {
+                placeByTouch.ResetPlacement();
+                placeByTouch.enabled = true;
+                // Planes will be enabled when Stage 1 instructions close
+            }
+        }
+    }
+
+    private void HandleStage1Completed()
+    {
+        Debug.Log("[LegoImageDetector] Stage 1 closed — enabling plane detection");
+        
+        if (instructionStage1 != null)
+            instructionStage1.OnInstructionsClosed -= HandleStage1Completed;
+        
+        if (placeByTouch != null)
+            placeByTouch.EnablePlaneDetection();
+    }
+
+    private void HandleModelPlaced()
+    {
+        Debug.Log("[LegoImageDetector] HandleModelPlaced() called.");
+
+        if (planePlaced)
+            return;
+
+        planePlaced = true;
+
+        if (placeByTouch != null)
+            modelSpawned = placeByTouch.Lego3D;
+
+        if (audioSource != null && model_spawned_sound != null)
+            audioSource.PlayOneShot(model_spawned_sound);
+
+        Debug.Log("[LegoImageDetector] MODEL PLACED — showing stage 2 instructions");
+
+        if (instructionStage1 != null)
+            instructionStage1.CloseInstructions();
+
+        if (instructionStage2 != null)
+            instructionStage2.OpenInstructions();
+    }
+
+    // Called when stage 0 closes
+    private void HandleStage0Completed()
+    {
+        Debug.Log("[LegoImageDetector] Stage 0 completed — enabling image detection");
+        stage0Completed = true;
+    }
+}
