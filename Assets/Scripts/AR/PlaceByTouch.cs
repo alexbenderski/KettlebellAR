@@ -73,7 +73,7 @@ public class PlaceBytouch : MonoBehaviour
     }
 
     // Let user tap to select a plane
-    void HandlePlaneSelection()
+    void HandlePlaneSelection() // טיפול בבחירת מישור על ידי המשתמש
     {
         if (Input.touchCount == 0) return;
         Touch touch = Input.GetTouch(0);
@@ -96,34 +96,34 @@ public class PlaceBytouch : MonoBehaviour
     }
 
     // Highlight only the selected plane
-    void HighlightSelectedPlane()
+    void HighlightSelectedPlane()// הדגשת המישור הנבחר
     {
         foreach (var plane in planeManager.trackables)
             plane.gameObject.SetActive(plane == selectedPlane);
     }
 
     // Let user tap on selected plane to place model
-    void HandleModelPlacementOnPlane()
+    void HandleModelPlacementOnPlane()// טיפול במיקום המודל על המישור הנבחר
     {
         if (Input.touchCount == 0) return;
         Touch touch = Input.GetTouch(0);
         if (touch.phase == TouchPhase.Ended)
         {
-            if (raycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon))
+            if (raycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon)) // בדיקת ריי קסט על המישור
             {
                 if (hits.Count > 0)
                 {
-                    ARPlane hitPlane = planeManager.GetPlane(hits[0].trackableId);
+                    ARPlane hitPlane = planeManager.GetPlane(hits[0].trackableId); // קבלת המישור מהתוצאה
                     if (hitPlane == selectedPlane)
                     {
-                        PlaceModelOnPlane(hits[0].pose);
+                        PlaceModelOnPlane(hits[0].pose);//hits[0].pose = הפוזיציה והסיבוב של נקודת המגע על המישור
                     }
                 }
             }
         }
     }
 
-    void PlaceModelOnPlane(Pose hitPose)
+    void PlaceModelOnPlane(Pose hitPose)// הצבת המודל על המישור
     {
         virtualGround.transform.position = hitPose.position;
         virtualGround.transform.rotation = hitPose.rotation;
@@ -138,14 +138,14 @@ public class PlaceBytouch : MonoBehaviour
         DisablePlanes();
     }
 
-    void DisablePlanes()
+    void DisablePlanes()// השבתת כל המישורים
     {
         foreach (var plane in planeManager.trackables)
             plane.gameObject.SetActive(false);
         planeManager.enabled = false;
     }
 
-    void HandleRotationDrag()
+    void HandleRotationDrag()// טיפול בסיבוב המודל באמצעות גרירה
     {
         if (!placed) return;
         if (Input.touchCount == 1)

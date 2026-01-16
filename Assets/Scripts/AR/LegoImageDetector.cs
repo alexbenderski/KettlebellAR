@@ -21,9 +21,9 @@ public class LegoImageDetector : MonoBehaviour
     public AudioClip model_spawned_sound;
     public AudioClip photo_scanned_sound;
 
-    void Awake()
+    void Awake()// אתחול משתנים
     {
-        // גיבוי אם שכחנו לשים ב-Inspector
+  
         if (manager == null)
             manager = FindFirstObjectByType<ARTrackedImageManager>();
 
@@ -31,39 +31,42 @@ public class LegoImageDetector : MonoBehaviour
             placeByTouch = FindFirstObjectByType<PlaceBytouch>();
     }
 
-    void OnEnable()
+    void OnEnable()// הרשמה לאירועים
     {
         if (manager != null)
-            manager.trackedImagesChanged += OnImageChanged;
+            manager.trackedImagesChanged += OnImageChanged;//   טיפול בשינויי תמונות במעקב
 
         if (placeByTouch != null)
-            placeByTouch.OnModelPlaced += HandleModelPlaced;
+            placeByTouch.OnModelPlaced += HandleModelPlaced;// טיפול באירוע הנחת מודל
     }
 
-    void OnDisable()
+    void OnDisable()// ביטול הרשמה לאירועים
     {
         if (manager != null)
-            manager.trackedImagesChanged -= OnImageChanged;
+            manager.trackedImagesChanged -= OnImageChanged; // ביטול טיפול בשינויי תמונות במעקב
 
         if (placeByTouch != null)
-            placeByTouch.OnModelPlaced -= HandleModelPlaced;
+            placeByTouch.OnModelPlaced -= HandleModelPlaced;    // ביטול טיפול באירוע הנחת מודל
     }
 
-    // נקרא מתוך MainMenuManager כשנכנסים ל-Explore
-    public void EnableTracking()
+       //נקרא מתוך 
+    // MainMenuManager
+    // Explore כשנכנסים ל-
+    // הפונקציה מאתחלת את המעקב אחרי תמונות ומכינה את הסצנה לזיהוי תמונה
+    public void EnableTracking()//מכינים את הסצנה לזיהוי תמונה
     {
         Debug.Log("[LegoImageDetector] EnableTracking");
-
+        // Reset states:
         imageDetected = false;
         planePlaced = false;
         stage0Completed = false;  // Reset flag when entering explore
 
         if (manager != null)
-            manager.enabled = true;
+            manager.enabled = true;// הפעלת מעקב תמונות
 
         if (placeByTouch != null)
         { 
-            // תמיד מתחילים מצב נקי – בלי מודל ועם placed=false
+            //placed=false תמיד מתחילים מצב נקי – בלי מודל ועם 
             placeByTouch.ResetPlacement();
             placeByTouch.DisablePlaneDetection();  // Explicitly disable planes before stage 0
             placeByTouch.enabled = false;   // נדליק אותו רק אחרי זיהוי תמונה
@@ -71,11 +74,11 @@ public class LegoImageDetector : MonoBehaviour
 
         // Subscribe to stage 0 completion
         if (instructionStage0 != null)
-            instructionStage0.OnInstructionsClosed += HandleStage0Completed;
+            instructionStage0.OnInstructionsClosed += HandleStage0Completed;//watch for stage 0 close event
     }
 
     // נקרא מתוך BackButtonExplore כשחוזרים לתפריט
-    public void ResetDetector()
+    public void ResetDetector()//set everything back to initial state before returning to main menu
     {
         Debug.Log("[LegoImageDetector] ResetDetector");
 
@@ -98,7 +101,7 @@ public class LegoImageDetector : MonoBehaviour
             placeByTouch.enabled = false;
         }
 
-        if (modelSpawned != null)
+        if (modelSpawned != null)// הסתרת המודל אם קיים
         {
             modelSpawned.SetActive(false);
             modelSpawned = null;
@@ -113,23 +116,23 @@ public class LegoImageDetector : MonoBehaviour
     }
 
     // ----------------------------------------------------------
-    private void OnImageChanged(ARTrackedImagesChangedEventArgs args)
+    private void OnImageChanged(ARTrackedImagesChangedEventArgs args)//    כשמתרחשים שינויים במעקב התמונות אז קוראים לפונקציה הזו כדי שתטפל בהם
     {
         foreach (var img in args.added)
-            CheckImage(img);
+            CheckImage(img);// בדיקת תמונה חדשה במעקב לאיתור התמונה הרצויה 
 
         foreach (var img in args.updated)
-            CheckImage(img);
+            CheckImage(img);// בדיקת תמונה מעודכנת במעקב לאיתור התמונה הרצויה
     }
 
-    private void CheckImage(ARTrackedImage img)
+    private void CheckImage(ARTrackedImage img) //בודקים אם התמונה במעקב היא התמונה הרצויה
     {
         if (imageDetected || !stage0Completed)  // Block until stage 0 done
             return;
 
         // מוודאים שהתמונה באמת במעקב
-        if (img.referenceImage.name == "hub_for_detection" &&
-            img.trackingState == TrackingState.Tracking)
+        if (img.referenceImage.name == "hub_for_detection" && 
+            img.trackingState == TrackingState.Tracking)// בדיקה אם התמונה שזוהתה היא התמונה הרצויה על ידי השוואת השם שלה
         {
             Debug.Log("[LegoImageDetector] IMAGE DETECTED: hub_for_detection");
             imageDetected = true;
