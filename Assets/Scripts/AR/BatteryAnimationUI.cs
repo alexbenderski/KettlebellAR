@@ -13,16 +13,16 @@ public class BatteryAnimator : MonoBehaviour
 
     [Header("Potential Energy Formula")]
     public TMP_InputField massInput;      // Mass (m) = Human's mass in kg
-    public TMP_InputField heightInput;    // Height (h) in meters
+    public TMP_InputField heightInput;    // Height (h) in centimeters (will be converted to meters)
     public TMP_Text potentialEnergyDisplay;  // Display result (Ep)
     public Button calculateButton;        // Button to calculate
     public Button resetButton;            // Button to reset animation
     private const float gravity = 9.8f;   // g = 9.8 m/s²
     private float calculatedEnergy = 0f;  // Stores Ep value
     
-    [Header("Energy Scale (Human Jump Physics)")]
-    [Tooltip("IMPORTANT: Set to 600 for realistic human jumps. Examples: 50kg@0.5m=245J, 70kg@0.8m=548.8J")]
-    public float maxRealisticEnergy = 600f;  // MUST BE 600 for typical human jump (~70kg at 0.9m height)
+    [Header("Energy Scale (Elite NBA Jump = 90 cm at 100kg)")]
+    [Tooltip("Set based on elite 90cm jump at 100kg. Formula: 100*9.8*0.9=882J. This is the maximum reference.")]
+    public float maxRealisticEnergy = 882f;  // Maximum: Elite NBA jump (100kg at 90cm) = 882J
 
     [Header("Result Window")]
     public GameObject resultWindowCanvas;  // ResultWindowCanvas to show when animation finishes
@@ -93,9 +93,9 @@ public class BatteryAnimator : MonoBehaviour
 
         // Parse inputs
         string massText = massInput.text;
-        string heightText = heightInput.text;
+        string heightCmText = heightInput.text;  // Height in centimeters
         
-        Debug.Log($"[BatteryAnimator] Raw input - Mass text: '{massText}', Height text: '{heightText}'");
+        Debug.Log($"[BatteryAnimator] Raw input - Mass text: '{massText}', Height (cm) text: '{heightCmText}'");
         
         if (!float.TryParse(massText, out float mass) || mass <= 0)
         {
@@ -105,15 +105,26 @@ public class BatteryAnimator : MonoBehaviour
             return;
         }
 
-        if (!float.TryParse(heightText, out float height) || height < 0)
+        if (!float.TryParse(heightCmText, out float heightCm) || heightCm < 0)
         {
-            Debug.LogWarning("[BatteryAnimator] Invalid height value. Please enter a non-negative number.");
+            Debug.LogWarning("[BatteryAnimator] Invalid height value. Please enter a non-negative number (in cm).");
             if (potentialEnergyDisplay != null)
                 potentialEnergyDisplay.text = "Invalid height!";
             return;
         }
 
-        Debug.Log($"[BatteryAnimator] Parsed values - Mass: {mass}kg, Height: {height}m, Gravity: {gravity}m/s²");
+        // Convert height from centimeters to meters
+        float height = heightCm / 100f;
+        
+        // Clamp height to maximum of 90 cm (elite jump)
+        if (heightCm > 90f)
+        {
+            Debug.LogWarning($"[BatteryAnimator] Height {heightCm}cm exceeds maximum 90cm. Clamping to 90cm.");
+            heightCm = 90f;
+            height = 0.9f;
+        }
+
+        Debug.Log($"[BatteryAnimator] Parsed values - Mass: {mass}kg, Height: {heightCm}cm ({height}m), Gravity: {gravity}m/s²");
         
         // Calculate Potential Energy: Ep = m * g * h
         // where m is the HUMAN'S mass (not the model)
@@ -122,18 +133,18 @@ public class BatteryAnimator : MonoBehaviour
         Debug.Log($"[BatteryAnimator] Step 1 - Calculation: {mass} × {gravity} × {height} = {calculatedEnergy:F2}J");
         Debug.Log($"[BatteryAnimator] Step 2 - Max Energy set to: {maxRealisticEnergy}J");
         
-        // Validate max energy is reasonable
-        if (maxRealisticEnergy < 100f || maxRealisticEnergy > 1000f)
+        // Validate max energy is reasonable (should be 882J for 100kg at 90cm)
+        if (maxRealisticEnergy < 800f || maxRealisticEnergy > 900f)
         {
-            Debug.LogWarning($"[BatteryAnimator] ⚠️ WARNING: maxRealisticEnergy is {maxRealisticEnergy}J, but should be around 600J for human jumps!");
-            Debug.LogWarning("[BatteryAnimator] Check Inspector → Energy Scale section and set maxRealisticEnergy to 600");
+            Debug.LogWarning($"[BatteryAnimator] ⚠️ WARNING: maxRealisticEnergy is {maxRealisticEnergy}J, but should be around 882J for elite 90cm jump!");
+            Debug.LogWarning("[BatteryAnimator] Check Inspector → Energy Scale section and set maxRealisticEnergy to 882");
         }
 
-        // Display result with max reference
+        // Display result with max reference (90cm elite jump)
         if (potentialEnergyDisplay != null)
-            potentialEnergyDisplay.text = $"{calculatedEnergy:F2}J(Ep) = \n{mass}(kg) * 9.8(g) * {height}h\nMax(around): {maxRealisticEnergy}J";
+            potentialEnergyDisplay.text = $"{calculatedEnergy:F2}J(Ep) = \n{mass}(kg) * 9.8(g) * {heightCm}cm\nMax(90cm elite): {maxRealisticEnergy}J";
 
-        // Map energy to animation percentage based on realistic human jump max
+        // Map energy to animation percentage based on 100cm maximum jump
         float division = calculatedEnergy / maxRealisticEnergy;
         float animationPercent = division * 100f;
         float clampedPercent = Mathf.Clamp(animationPercent, 0, 100);
