@@ -2209,101 +2209,102 @@ MonoBehaviour:
     sensorColor: {r: 0, g: 0, b: 0, a: 0}
     sensorIcon: {fileID: 21300000, guid: d3c475edecb727f438f7851ef3b53679, type: 3}
     questions:
-    - question: What does the Distance Sensor measure?
+    - question: Which sensor is used in the squat jump activity?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - Color Sensor
+      - Force Sensor
+      - 'Distance Sensor '
+      - Gyro Sensor
+      correctIndex: 2
+      difficulty: 0
+    - question: Where is the Distance Sensor placed in the model?
+      answers:
+      - At the top, facing up
+      - On the side, facing forward
+      - 'At the bottom, facing the ground '
+      - Inside the hub
+      correctIndex: 2
+      difficulty: 0
+    - question: What action do students perform during the activity
+      answers:
+      - Running
+      - 'Squat jumps '
+      - Throwing
+      - Spinning
+      correctIndex: 1
       difficulty: 0
     - question: What does the Distance Sensor measure?
       answers:
-      - Distance to objects
+      - Speed
+      - Weight
+      - 'Distance from the ground '
       - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      correctIndex: 2
       difficulty: 0
-    - question: What does the Distance Sensor measure?
+    - question: How does the sensor help calculate jump height?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
-      difficulty: 0
-    - question: What does the Distance Sensor measure?
-      answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
-      difficulty: 0
-    - question: What does the Distance Sensor measure?
-      answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - By measuring time in the air
+      - By counting steps
+      - 'By detecting changes in distance from the ground '
+      - By measuring body weight
+      correctIndex: 2
       difficulty: 1
-    - question: What does the Distance Sensor measure?
+    - question: Why must the sensor point at a flat surface?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - To look better
+      - To avoid noise
+      - 'To get accurate distance readings '
+      - To save battery
+      correctIndex: 2
       difficulty: 1
-    - question: What does the Distance Sensor measure?
+    - question: Which value comes directly from the sensor?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - Mass
+      - Gravity
+      - 'Distance '
+      - Energy
+      correctIndex: 2
       difficulty: 1
-    - question: What does the Distance Sensor measure?
+    - question: What happens to the distance value when the person jumps higher?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - It stays the same
+      - 'It changes more '
+      - It disappears
+      - It becomes zero
+      correctIndex: 1
       difficulty: 1
-    - question: What does the Distance Sensor measure?
+    - question: Which formula is used to calculate potential energy in this activity?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - "E = v \xD7 t"
+      - E = m + h
+      - "E = m \xD7 g \xD7 h "
+      - "E = d \xF7 t"
+      correctIndex: 2
       difficulty: 2
-    - question: What does the Distance Sensor measure?
+    - question: Two students jump to the same height, but one has more mass. Who
+        has more potential energy?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - The lighter student
+      - 'The heavier student '
+      - Both have the same
+      - It cannot be calculated
+      correctIndex: 1
       difficulty: 2
-    - question: What does the Distance Sensor measure?
+    - question: What could cause inaccurate sensor measurements?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - A flat floor
+      - Standing still
+      - 'An uneven surface '
+      - Correct sensor placement
+      correctIndex: 2
       difficulty: 2
-    - question: What does the Distance Sensor measure?
+    - question: Why is this activity good for learning science?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - It replaces math
+      - It only uses computers
+      - 'It connects movement with real data and physics '
+      - It avoids experiments
+      correctIndex: 2
       difficulty: 2
     badgeSprite: {fileID: 21300000, guid: 743099a671706b74199175e530af167f, type: 3}
     successSound: {fileID: 8300000, guid: e0df710835068a34d922c999fb18fcf9, type: 3}
@@ -2312,101 +2313,102 @@ MonoBehaviour:
     sensorColor: {r: 0, g: 0, b: 0, a: 0}
     sensorIcon: {fileID: 21300000, guid: 56cc7c5bc514f81459f77af132bd69a4, type: 3}
     questions:
-    - question: What does the Distance Sensor measure?
+    - question: What is the main role of the HUB in the squat jump model?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
-      difficulty: 0
-    - question: What technology does the Distance Sensor use?
-      answers:
-      - Laser beam
-      - Infrared light
-      - Ultrasonic waves
-      - Radio waves
+      - To measure distance
+      - To measure force
+      - 'To control and manage the model '
+      - To display colors
       correctIndex: 2
       difficulty: 0
-    - question: What is the maximum range of the SPIKE Distance Sensor?
+    - question: "Why is the HUB called the \u201Cbrain\u201D of the model?"
       answers:
-      - 1000 cm
-      - 500 cm
-      - 50 cm
-      - 200 cm
+      - Because it is the largest part
+      - Because it thinks like a human
+      - 'Because it processes information from sensors '
+      - Because it is made of plastic
+      correctIndex: 2
+      difficulty: 0
+    - question: Can the squat jump model work without the HUB?
+      answers:
+      - Yes, fully
+      - Only sometimes
+      - 'No, it cannot work properly '
+      - Only with batteries
+      correctIndex: 2
+      difficulty: 0
+    - question: What does the HUB connect to?
+      answers:
+      - Only motors
+      - Only the screen
+      - 'Sensors and the app '
+      - Only the internet
+      correctIndex: 2
+      difficulty: 0
+    - question: What kind of data does the HUB receive during a squat jump?
+      answers:
+      - Color and sound
+      - 'Height and force values '
+      - Temperature
+      - Battery level only
+      correctIndex: 1
+      difficulty: 1
+    - question: What does the HUB do with the data from the sensors?
+      answers:
+      - Deletes it
+      - Ignores it
+      - 'Processes and uses it in the program '
+      - Sends it to another robot
+      correctIndex: 2
+      difficulty: 1
+    - question: How does the HUB communicate with the SPIKE Prime app?
+      answers:
+      - 'Wirelessly (Bluetooth) '
+      - With cables only
+      - With sound
+      - With lights
+      correctIndex: 0
+      difficulty: 1
+    - question: Why is the HUB important for counting jumps?
+      answers:
+      - 'It runs the program logic '
+      - It feels pressure
+      - It measures distance
+      - It powers the screen
+      correctIndex: 0
+      difficulty: 1
+    - question: What would happen if the HUB did not process sensor data correctly?
+      answers:
+      - What would happen if the HUB did not process sensor data correctly?
+      - The model would become stronger
+      - 'The data and results would be inaccurate '
+      - The sensor would stop working forever
+      correctIndex: 2
+      difficulty: 2
+    - question: How is the HUB similar to a real computer?
+      answers:
+      - It has a keyboard
+      - It plays games
+      - 'It processes input and controls output '
+      - It is connected to the internet
+      correctIndex: 2
+      difficulty: 2
+    - question: Why does the HUB need a program to work?
+      answers:
+      - To look cool
+      - 'To know how to respond to sensor data '
+      - To charge the battery
+      - To connect LEGO pieces
+      correctIndex: 1
+      difficulty: 2
+    - question: "What is the best description of the HUB\u2019s role in learning
+        science?"
+      answers:
+      - It replaces physical activity
+      - It stores LEGO parts
+      - It only shows results
+      - "It connects sensors, data, and thinking into one system \u2705"
       correctIndex: 3
-      difficulty: 0
-    - question: In the Kettlebell exercise, what does the Distance Sensor measure?
-      answers:
-      - Running speed
-      - Jump height
-      - Body weight
-      - Heart rate
-      correctIndex: 1
-      difficulty: 0
-    - question: In the Kettlebell exercise, what does the Distance Sensor measure?
-      answers:
-      - Running speed
-      - Jump height
-      - Body weight
-      - Heart rate
-      correctIndex: 1
-      difficulty: 1
-    - question: In the Kettlebell exercise, what does the Distance Sensor measure?
-      answers:
-      - Running speed
-      - Jump height
-      - Body weight
-      - Heart rate
-      correctIndex: 1
-      difficulty: 1
-    - question: In the Kettlebell exercise, what does the Distance Sensor measure?
-      answers:
-      - Running speed
-      - Jump height
-      - Body weight
-      - Heart rate
-      correctIndex: 1
-      difficulty: 1
-    - question: In the Kettlebell exercise, what does the Distance Sensor measure?
-      answers:
-      - Running speed
-      - Jump height
-      - Body weight
-      - Heart rate
-      correctIndex: 1
-      difficulty: 1
-    - question: In the Kettlebell exercise, what does the Distance Sensor measure?
-      answers:
-      - Running speed
-      - Jump height
-      - Body weight
-      - Heart rate
-      correctIndex: 1
-      difficulty: 2
-    - question: In the Kettlebell exercise, what does the Distance Sensor measure?
-      answers:
-      - Running speed
-      - Jump height
-      - Body weight
-      - Heart rate
-      correctIndex: 1
-      difficulty: 2
-    - question: In the Kettlebell exercise, what does the Distance Sensor measure?
-      answers:
-      - Running speed
-      - Jump height
-      - Body weight
-      - Heart rate
-      correctIndex: 1
-      difficulty: 2
-    - question: In the Kettlebell exercise, what does the Distance Sensor measure?
-      answers:
-      - Running speed
-      - Jump height
-      - Body weight
-      - Heart rate
-      correctIndex: 1
       difficulty: 2
     badgeSprite: {fileID: 21300000, guid: 5049b91e307edcf4c8dc2fb5678851b7, type: 3}
     successSound: {fileID: 8300000, guid: e0df710835068a34d922c999fb18fcf9, type: 3}
@@ -2415,101 +2417,102 @@ MonoBehaviour:
     sensorColor: {r: 0, g: 0, b: 0, a: 0}
     sensorIcon: {fileID: 21300000, guid: 736ba7fc43d88c047ab75034e2129aa2, type: 3}
     questions:
-    - question: What does the Distance Sensor measure?
+    - question: What does the Force Sensor measure?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
+      - Distance
+      - Color
+      - 'Pressure or force '
+      - 'Pressure or force '
+      correctIndex: 2
+      difficulty: 0
+    - question: Where is the Force Sensor placed in the squat jump model?
+      answers:
+      - At the bottom
+      - On the side
+      - 'At the top '
+      - Inside the motor
+      correctIndex: 2
+      difficulty: 0
+    - question: When does the Force Sensor detect a jump?
+      answers:
+      - 'When the student lands and presses the sensor '
+      - When the student bends down
+      - When the student jumps up
+      - When the program starts
       correctIndex: 0
       difficulty: 0
-    - question: What does the Distance Sensor measure?
+    - question: What happens when the sensor feels pressure?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - The model stops
+      - 'The jump is counted '
+      - The sensor turns off
+      - The distance is measured
+      correctIndex: 1
       difficulty: 0
-    - question: What does the Distance Sensor measure?
+    - question: How does the Force Sensor know how strong a jump is?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
-      difficulty: 0
-    - question: What does the Distance Sensor measure?
-      answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
-      difficulty: 0
-    - question: What does the Distance Sensor measure?
-      answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - By measuring height
+      - By measuring speed
+      - 'By measuring how hard it is pressed '
+      - By counting time
+      correctIndex: 2
       difficulty: 1
-    - question: What does the Distance Sensor measure?
+    - question: "What does \u201Cpress hard\u201D mean for the jump?"
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - A smaller jump
+      - A slower jump
+      - 'A stronger jump '
+      - No jump
+      correctIndex: 2
       difficulty: 1
-    - question: What does the Distance Sensor measure?
+    - question: What force range can the Force Sensor detect?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - "0\u201310%"
+      - "0\u201350%"
+      - "0\u201375%"
+      - "0\u2013100% "
+      correctIndex: 3
       difficulty: 1
-    - question: What does the Distance Sensor measure?
+    - question: Why is the Force Sensor useful in this activity?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
+      - It measures distance
+      - It tells time
+      - 'It helps detect and count jumps '
+      - It controls the motor
+      correctIndex: 2
+      difficulty: 2
+    - question: How does the Force Sensor help decide if a movement is a real jump?
+      answers:
+      - By checking color
+      - 'By detecting enough pressure when landing '
+      - By measuring height
+      - By measuring gravity
+      correctIndex: 1
+      difficulty: 2
+    - question: If two jumps are counted, but one has a higher force value, what
+        does that mean?
+      answers:
+      - The jump was slower
+      - The jump was shorter
+      - 'The jump was stronger '
+      - The jump was incorrect
+      correctIndex: 2
+      difficulty: 2
+    - question: What could cause a jump NOT to be counted?
+      answers:
+      - 'Landing with very little force '
+      - Pressing the sensor too hard
+      - Jumping too high
+      - Standing still
       correctIndex: 0
       difficulty: 2
-    - question: What does the Distance Sensor measure?
+    - question: Why is the Force Sensor important for learning science?
       answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
-      difficulty: 2
-    - question: What does the Distance Sensor measure?
-      answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
-      difficulty: 2
-    - question: What does the Distance Sensor measure?
-      answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
-      difficulty: 2
-    - question: What does the Distance Sensor measure?
-      answers:
-      - Distance to objects
-      - Temperature
-      - Light intensity
-      - Sound level
-      correctIndex: 0
+      - It replaces physics formulas
+      - It makes the model heavier
+      - 'It turns force into measurable data '
+      - It controls the screen
+      correctIndex: 2
       difficulty: 2
     badgeSprite: {fileID: 21300000, guid: 0249ea793fcfcdc479516ea0e502befd, type: 3}
     successSound: {fileID: 8300000, guid: e0df710835068a34d922c999fb18fcf9, type: 3}
@@ -16625,65 +16628,57 @@ MonoBehaviour:
     text: 
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: 'What Does the Force Sensor Do?
-
-
-'
+    text: "What the Force Sensor is like?\nThink of the Force Sensor as your model\u2019s
+      \u201CSense of Touch.\u201D It works like a smart pressure pad that can feel
+      how hard something is pressing on it.\n"
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: 'The Force Sensor is a smart button...
-
-      It feels how hard you push,
-
-      so
-      the model knows when you jump
-
-      and how strong your jump was!'
+    text: "How it\u2019s used in the Squat Jump build\nIn the Squat Jump build, the
+      sensor reacts when you land from a jump or when you grip the kettlebell to
+      prepare for an explosive move."
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: What is its job in the Squat Jump model?
+    text: It measures the pressure being applied to it during these actions.
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: 'In this model, the Force Sensor is placed at the top.
-
-      It helps
-      the robot understand your jumps!
-
-
-'
+    text: "What the sensor measures\nThe sensor doesn\u2019t only detect that you
+      pushed."
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: "When you land and press down on it,\nthe sensor says:\n\u201CA jump just
-      happened!\u201D\n"
+    text: ' It measures how hard you pushed on a scale from 0 to 100%, so the SPIKE
+      Prime Hub can tell the difference between a light tap and a strong, high-energy
+      landing.'
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: "Knows how strong the jump was:\n\nPress hard \u2192 big jump! \nPress
-      softly \u2192 small jump! \n\n"
+    text: "Job 1: Counting reps\nEach time the sensor feels a strong enough press,
+      it logs a \u201CRep\u201D (repetition)."
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: "Counts your jumps:\n\nEvery time the sensor feels pressure,\nthe robot
-      adds 1 jump to your score \u27951."
+    text: ' This way, it automatically counts jumps so students can focus on performing
+      the workout.'
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: 'How does it work?
+    text: "Job 2: Measuring intensity\nThe sensor can measure the \u201CImpact Force\u201D
+      of the landing."
+  - video: {fileID: 0}
+    image: {fileID: 0}
+    text: This gives an idea of how much power the student is putting into their
+      legs during each jump.
+  - video: {fileID: 0}
+    image: {fileID: 0}
+    text: 'Job 3: Filtering noise with a threshold
 
-
-      The sensor can feel pressure from 0% to 100%.
-
-      So
-      it knows:'
+      By setting a threshold
+      (for example, 20%), the sensor ignores small accidental touches and only counts
+      real presses.'
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: "Did someone press? \nHow strong was it? \nWas it a real jump? \nShould
-      it count it? "
-  - video: {fileID: 32900000, guid: a5a09579cab141c44a2d605890fc87c9, type: 3}
-    image: {fileID: 0}
-    text: 
+    text: This prevents tiny bumps from being counted as actual jumps and helps separate
+      simply holding the device from performing an athletic squat.
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: 'Great job!
-
-      Tap anywhere on the screen to return to the model.'
+    text: "Exellent you if you are here, it seems like you a good learner ! \nswipe
+      and continue to other sensor . you can always back to main menu :)"
   fullScreenPopup: {fileID: 194860810}
   stepImage: {fileID: 190699138}
   stepText: {fileID: 1507784991}
@@ -21856,45 +21851,42 @@ MonoBehaviour:
     text: 
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: "What Is the \u201CTime for Squat Jumps\u201D Activity?\n\n"
+    text: "What the activity is\nThe \u201CTime for Squat Jumps\u201D activity is
+      part of the LEGO\xAE Education SPIKE\u2122 Prime Training Trackers series.
+      Students perform squat jumps while a LEGO model measures their movement using
+      a sensor."
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: 'Part of LEGO Education Prime Training Trackers.
+    text: 'The learning goal
 
-      Students explore
-      and analyze squat jumps.
-
-'
+      The goal is to see how high a person jumps and
+      learn how movement can be turned into real scientific data. '
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: 'Focus on measurement, data collection, and basic physics.
-
-      Uses
-      a LEGO sensor to gather real-time data.
-
-'
+    text: By jumping, measuring, and analyzing results, students discover how physics
+      connects to real life and even to sports and fitness.
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: 'The Role of the Sensor in the Model?
+    text: 'Sensor setup
 
-'
+      The model uses a Distance Sensor placed at the bottom
+      and pointed toward the ground.'
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: 'The model uses a Distance Sensor.
+    text: 'What happens during the jump
 
-      The sensor is placed at the bottom
-      of the build.
-
-      It points downward toward a flat surface.
-
-
-'
+      As the person jumps, the distance
+      between the sensor and the floor changes.'
   - video: {fileID: 32900000, guid: a5a09579cab141c44a2d605890fc87c9, type: 3}
     image: {fileID: 0}
     text: 
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: How does it work?
+    text: 'Data collection and height calculation
+
+      The sensor measures this
+      change many times per second, and the program uses these measurements to calculate
+      the jump height.'
   - video: {fileID: 0}
     image: {fileID: 0}
     text: 'During squat jumps, the sensor measures how high the jump reaches.
@@ -21903,40 +21895,18 @@ MonoBehaviour:
       the person jumps, the distance from the ground changes.'
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: "The sensor detects this change to calculate jump height.\n This height
-      value is used for further calculations."
+    text: "Turning height into energy\nThe calculated height is then used to compute
+      potential energy using the formula:\nE = m \xD7 g \xD7 h."
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: "With the height (h), students calculate potential energy:\nm \xD7 g \xD7
-      h"
-  - video: {fileID: 0}
-    image: {fileID: 21300000, guid: edac14ef13703bd4695618ba966e265c, type: 3}
-    text: 
+    text: What students learn from it?
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: How the Sensor Supports Learning?
+    text: tudents learn how sensors collect real data, how height affects energy,
+      and how technology helps scientists measure and understand motion.
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: '- Shows students real, measurable movement data.
-
-      - Connects physical
-      activity with scientific analysis.'
-  - video: {fileID: 0}
-    image: {fileID: 0}
-    text: '- Builds understanding of the link between height and potential energy.
-
-      -
-      Encourages curiosity, experimentation, and scientific thinking.'
-  - video: {fileID: 0}
-    image: {fileID: 0}
-    text: "Lets see some simulation to learn it better :) \nswipe left to start!
-      :)"
-  - video: {fileID: 0}
-    image: {fileID: 0}
-    text: 'Simulation ended. you always can run it from the main menu =)
-
-      tap
-      anywhere to continue exploring .'
+    text: Swipe and try explore another sensor !
   fullScreenPopup: {fileID: 194860810}
   stepImage: {fileID: 190699138}
   stepText: {fileID: 1507784991}
@@ -25328,15 +25298,27 @@ MonoBehaviour:
   steps:
   - video: {fileID: 0}
     image: {fileID: 21300000, guid: bc427fc62211419448fae96d9f67bdff, type: 3}
-    text: 'Welcome! This is the Squat Jumps model from LEGO SPIKE Prime.
-
-'
+    text: "The HUB is the brain of the LEGO\xAE Education SPIKE\u2122 Prime squat
+      jump model. It connects all the parts together and controls how the model works."
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: 'Together, we will learn how to do squat jumps while the model measures
-      your movement!
-
-'
+    text: The HUB receives information from the sensors, processes the data, and
+      decides what the model should do next
+  - video: {fileID: 0}
+    image: {fileID: 0}
+    text: In the squat jump activity, the HUB collects data from the Distance Sensor
+      and the Force Sensor, such as jump height and landing force.
+  - video: {fileID: 0}
+    image: {fileID: 0}
+    text: It runs the program that counts jumps, stores measurements, and helps calculate
+      results like potential energy.
+  - video: {fileID: 0}
+    image: {fileID: 0}
+    text: The HUB also connects wirelessly to the SPIKE Prime app.
+  - video: {fileID: 0}
+    image: {fileID: 0}
+    text: allowing students to see the data, improve the program, and understand
+      how hardware and software work together
   - video: {fileID: 0}
     image: {fileID: 0}
     text: 'Step 1:
@@ -25402,9 +25384,8 @@ MonoBehaviour:
     text: 
   - video: {fileID: 0}
     image: {fileID: 0}
-    text: 'Great job!
-
-      Tap anywhere on the screen to return to the model.'
+    text: "Exellent you if you are here, it seems like you a good learner ! \nswipe
+      and continue to other sensor.\n you can always back to main menu :)"
   fullScreenPopup: {fileID: 194860810}
   stepImage: {fileID: 190699138}
   stepText: {fileID: 1507784991}
